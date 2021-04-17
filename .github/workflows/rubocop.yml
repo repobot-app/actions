@@ -4,6 +4,7 @@ jobs:
   rubocop:
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v2
     - uses: solnic/dt-actions/rubocop@main
       with:
         path: 'tests/rubocop/hello.rb'
