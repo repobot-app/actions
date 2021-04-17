@@ -1,6 +1,6 @@
 on:
-  repository_dispatch:
-    types: [rubocop]
+  workflow_dispatch:
+  push:
 
 jobs:
   rubocop:
