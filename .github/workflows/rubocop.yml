@@ -15,3 +15,4 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: ${{ steps.rubocop.outputs.result_file }}
+        path: ${{ steps.rubocop.outputs.result_file }}
