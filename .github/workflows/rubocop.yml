@@ -12,7 +12,6 @@ jobs:
       with:
         path: 'tests/rubocop/hello.rb'
     - name: Store results
-      run: echo "The time was "
       uses: actions/upload-artifact@v2
       with:
         name: ${{ steps.rubocop.outputs.result_file }}
