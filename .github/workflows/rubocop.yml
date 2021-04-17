@@ -6,4 +6,4 @@ jobs:
     steps:
     - uses: solnic/dt-actions/rubocop@main
       with:
-        path: '/'
+        path: 'tests/rubocop/hello.rb'
