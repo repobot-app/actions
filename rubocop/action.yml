@@ -1,0 +1,16 @@
+# action.yml
+name: 'RuboCop'
+description: 'Runs RuboCop'
+inputs:
+  path:
+    description: 'Path to file(s)'
+    required: true
+    default: '/'
+outputs:
+  result_file:
+    description: 'Result file'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.path }}
