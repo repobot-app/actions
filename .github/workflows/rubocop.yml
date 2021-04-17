@@ -4,7 +4,15 @@ jobs:
   rubocop:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: solnic/dt-actions/rubocop@main
+    - name: Clone
+      uses: actions/checkout@v2
+    - name: Run rubocop
+      id: rubocop
+      uses: solnic/dt-actions/rubocop@main
       with:
         path: 'tests/rubocop/hello.rb'
+    - name: Store results
+      run: echo "The time was "
+      uses: actions/upload-artifact@v2
+      with:
+        name: ${{ steps.rubocop.outputs.result_file }}
