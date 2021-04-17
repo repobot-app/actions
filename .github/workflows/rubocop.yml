@@ -1,4 +1,6 @@
-on: [push]
+on:
+  repository_dispatch:
+    types: [rubocop]
 
 jobs:
   rubocop:
