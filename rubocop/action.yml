@@ -11,6 +11,6 @@ outputs:
     description: 'Result file'
 runs:
   using: 'docker'
-  image: 'Dockerfile'
+  image: 'docker.pkg.github.com/solnic/dt-actions/action-rubocop:latest'
   args:
     - ${{ inputs.path }}
