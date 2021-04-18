@@ -19,6 +19,8 @@ services:
       - cli
   action-rubocop:
     image: solnic/dt-action-rubocop:latest
+    volumes:
+      - .:/github/workspace
     build:
       context: action-rubocop
     depends_on:
