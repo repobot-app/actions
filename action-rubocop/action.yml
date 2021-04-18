@@ -4,8 +4,8 @@ description: 'Runs RuboCop'
 inputs:
   path:
     description: 'Path to file(s)'
-    required: true
-    default: '/'
+    required: false
+    default: '**/*/.rb'
 outputs:
   result_file:
     description: 'Result file'
