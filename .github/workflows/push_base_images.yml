@@ -4,23 +4,23 @@ on:
   push:
     branch: "main"
     path:
-     - base/**
+     - "base/**"
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        image:
-         - ruby
-         - cli
-         - runner-rubocop
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-    - name: Build and publish latest ${{ matrix.image }} image
+    - name: Build and publish latest ruby image
       uses: VaultVulp/gp-docker-action@1.1.8
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
-        image-name: ${{ matrix.image }}
-        dockerfile: base/${{ matrix.image }}/Dockerfile
+        image-name: ruby
+        dockerfile: base/ruby/Dockerfile
+    - name: Build and publish latest ruby image
+      uses: VaultVulp/gp-docker-action@1.1.8
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        image-name: ruby
+        dockerfile: base/ruby/Dockerfile

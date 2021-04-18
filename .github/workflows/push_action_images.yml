@@ -4,21 +4,18 @@ on:
   push:
     branch: "main"
     path:
-     - base/**
+    - "!base/**"
+    - "**/Dockerfile"
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        image:
-         - rubocop
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-    - name: Build and publish latest ${{ matrix.image }} image
+    - name: Build and publish latest rubocop action image
       uses: VaultVulp/gp-docker-action@1.1.8
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
-        image-name: ${{ matrix.image }}
-        dockerfile: ${{ matrix.image }}/Dockerfile
+        image-name: rubocop
+        dockerfile: rubocop/Dockerfile
