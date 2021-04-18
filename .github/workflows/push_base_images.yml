@@ -7,13 +7,14 @@ on:
      - base/**
 
 jobs:
-  update:
+  build:
     runs-on: ubuntu-latest
-    matrix:
-      image:
-       - ruby
-       - cli
-       - rubocop
+    strategy:
+      matrix:
+        image:
+         - ruby
+         - cli
+         - rubocop
     steps:
     - name: Checkout
       uses: actions/checkout@v2

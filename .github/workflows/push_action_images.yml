@@ -7,11 +7,12 @@ on:
      - base/**
 
 jobs:
-  update:
+  build:
     runs-on: ubuntu-latest
-    matrix:
-      image:
-       - rubocop
+    strategy:
+      matrix:
+        image:
+         - rubocop
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -20,4 +21,4 @@ jobs:
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         image-name: ${{ matrix.image }}
-        dockerfile: base/${{ matrix.image }}/Dockerfile
+        dockerfile: ${{ matrix.image }}/Dockerfile
