@@ -1,7 +1,7 @@
 ARG ruby_version=latest
 ARG cli_version=main
 
-FROM docker.pkg.github.com/solnic/dt-actions/ruby:$ruby_version
+FROM solnic/dt-ruby:$ruby_version
 
 COPY files /
 

@@ -1,6 +1,6 @@
 ARG cli_version=latest
 
-FROM docker.pkg.github.com/solnic/dt-actions/cli:$cli_version
+FROM solnic/dt-cli:$cli_version
 
 ARG rubocop_version=1.12.1
 
