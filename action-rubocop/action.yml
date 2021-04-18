@@ -5,7 +5,7 @@ inputs:
   path:
     description: 'Path to file(s)'
     required: false
-    default: '**/*/.rb'
+    default: '**/*.rb'
 outputs:
   result_file:
     description: 'Result file'
