@@ -4,8 +4,7 @@ on:
   push:
     branch: "main"
     path:
-    - "!base/**"
-    - "**/Dockerfile"
+    - "action-*/**"
 
 jobs:
   build:
@@ -13,10 +12,10 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-    - name: Build and publish latest rubocop action image
+    - name: Build and publish latest action-rubocop image
       uses: VaultVulp/gp-docker-action@1.1.8
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
-        image-name: rubocop
-        build-context: rubocop
-        dockerfile: rubocop/Dockerfile
+        image-name: action-rubocop
+        build-context: action-rubocop
+        dockerfile: action-rubocop/Dockerfile
