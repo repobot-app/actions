@@ -19,3 +19,4 @@ jobs:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         image-name: rubocop
         build-context: rubocop
+        dockerfile: rubocop/Dockerfile
