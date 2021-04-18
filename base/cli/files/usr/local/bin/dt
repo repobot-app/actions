@@ -1,0 +1,6 @@
+#!/bin/sh -l
+
+set -e
+
+cd /cli
+exe/devtools "$@"

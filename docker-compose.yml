@@ -1,0 +1,25 @@
+version: "3"
+
+services:
+  ruby:
+    image: docker.pkg.github.com/solnic/dt-actions/ruby:latest
+    build:
+      context: base/ruby
+  cli:
+    image: docker.pkg.github.com/solnic/dt-actions/cli:latest
+    build:
+      context: base/cli
+    depends_on:
+      - ruby
+  runner-rubocop:
+    image: docker.pkg.github.com/solnic/dt-actions/runner-rubocop:latest
+    build:
+      context: base/runner-rubocop
+    depends_on:
+      - cli
+  action-rubocop:
+    image: docker.pkg.github.com/solnic/dt-actions/rubocop:latest
+    build:
+      context: rubocop
+    depends_on:
+      - runner-rubocop

@@ -1,0 +1,23 @@
+name: "Push action images"
+
+on:
+  push:
+    branch: "main"
+    path:
+     - base/**
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    matrix:
+      image:
+       - rubocop
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Build and publish latest ${{ matrix.image }} image
+      uses: VaultVulp/gp-docker-action@1.1.8
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        image-name: ${{ matrix.image }}
+        dockerfile: base/${{ matrix.image }}/Dockerfile
