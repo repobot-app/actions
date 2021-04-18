@@ -18,15 +18,18 @@ jobs:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         image-name: ruby
         build-context: base/ruby
+        dockerfile: base/ruby/Dockerfile
     - name: Build and publish latest cli image
       uses: VaultVulp/gp-docker-action@1.1.8
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         image-name: cli
         build-context: base/cli
+        dockerfile: base/cli/Dockerfile
     - name: Build and publish latest runner-rubocop image
       uses: VaultVulp/gp-docker-action@1.1.8
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         image-name: runner-rubocop
         build-context: base/runner-rubocop
+        dockerfile: base/runner-rubocop/Dockerfile
