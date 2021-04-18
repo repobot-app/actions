@@ -2,9 +2,10 @@ name: "Push action images"
 
 on:
   push:
-    branch: "main"
-    path:
-    - "action-*/**"
+    branches:
+      - "main"
+    paths:
+      - "action-*/**"
 
 jobs:
   build:
