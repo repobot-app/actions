@@ -1,11 +1,11 @@
-name: "Devtools / RuboCop"
+name: "Devtools"
 
 on:
   workflow_dispatch:
   push:
 
 jobs:
-  rubocop:
+  RuboCop:
     runs-on: ubuntu-latest
     steps:
     - name: Clone
