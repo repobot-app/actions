@@ -11,6 +11,6 @@ outputs:
     description: 'Result file'
 runs:
   using: 'docker'
-  image: 'action-hero/action-rubocop@main'
+  image: 'action-rubocop/Dockerfile'
   args:
     - ${{ inputs.path }}
