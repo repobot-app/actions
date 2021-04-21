@@ -10,6 +10,7 @@ outputs:
   result_file:
     description: 'Result file'
 runs:
-  using: 'action-hero/ah-actions@main/action-rubocop'
+  using: 'docker'
+  image: 'action-hero/ah-actions@main/action-rubocop'
   args:
     - ${{ inputs.path }}
