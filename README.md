@@ -1,1 +1,1 @@
-# dt-actions
+# actions
