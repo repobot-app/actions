@@ -5,18 +5,10 @@ services:
     image: solnic/ah-ruby:latest
     build:
       context: base/ruby
-  cli:
-    image: solnic/ah-cli:latest
-    build:
-      context: base/cli
-    depends_on:
-      - ruby
   runner-rubocop:
     image: solnic/ah-runner-rubocop:latest
     build:
       context: base/runner-rubocop
-    depends_on:
-      - cli
   action-rubocop:
     image: solnic/ah-action-rubocop:latest
     volumes:
