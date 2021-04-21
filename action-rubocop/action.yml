@@ -10,6 +10,6 @@ outputs:
   result_file:
     description: 'Result file'
 runs:
-  using: 'action-hero/ah-actions/action-rubocop@main'
+  using: 'action-hero/ah-actions/action-rubocop'
   args:
     - ${{ inputs.path }}
