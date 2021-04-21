@@ -2,23 +2,23 @@ version: "3"
 
 services:
   ruby:
-    image: solnic/dt-ruby:latest
+    image: solnic/ah-ruby:latest
     build:
       context: base/ruby
   cli:
-    image: solnic/dt-cli:latest
+    image: solnic/ah-cli:latest
     build:
       context: base/cli
     depends_on:
       - ruby
   runner-rubocop:
-    image: solnic/dt-runner-rubocop:latest
+    image: solnic/ah-runner-rubocop:latest
     build:
       context: base/runner-rubocop
     depends_on:
       - cli
   action-rubocop:
-    image: solnic/dt-action-rubocop:latest
+    image: solnic/ah-action-rubocop:latest
     volumes:
       - .:/github/workspace
     build:

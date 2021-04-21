@@ -12,7 +12,7 @@ jobs:
       uses: actions/checkout@v2
     - name: Run rubocop
       id: rubocop
-      uses: solnic/dt-actions/action-rubocop@main
+      uses: solnic/ah-actions/action-rubocop@main
       with:
         path: 'tests/rubocop/hello.rb'
     - name: Store results
