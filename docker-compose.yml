@@ -7,3 +7,4 @@ services:
       - .:/github/workspace
     build:
       context: rubocop
+    env_file: .env
