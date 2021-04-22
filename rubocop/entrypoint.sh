@@ -6,6 +6,8 @@ ls -l
 
 echo $*
 
+echo $(cat /usr/local/src/cli/log/cli.log)
+
 echo "::debug::rubocop start"
 ah metrics rubocop -- --format json --out $result_file $*
 grep '::debug::' /usr/local/src/cli/log/cli.log
