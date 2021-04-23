@@ -8,15 +8,13 @@ else
   changed_files=$(ah ws cf --range "$GITHUB_SHA~1" --types ruby)
 fi
 
-echo "changed_files:$changed_files"
+echo "::group::{Changed/Added files}"
+echo "Running against $changed_files"
+echo "::endgroup::"
 
-if [[ ! -z "$changed_files" ]]; then
+if [[ -z "$changed_files" ]]; then
   echo "No changes found, skipping checks"
 else
-  echo "::group::{Changed/Added files}"
-  echo "Running against $changed_files"
-  echo "::endgroup::"
-
   echo "::group::{Results}"
   ah m rubocop --root $GITHUB_WORKSPACE -- --format github $changed_files
   echo "::endgroup::"
