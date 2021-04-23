@@ -1,7 +1,17 @@
 #!/bin/sh -l
 
-result_file="ah-result-$GITHUB_RUN_ID.json"
+echo "::group::Changed/Added files"
+echo "$GIT_DIFF"
+echo "::endgroup::"
 
-ah metrics rubocop --root $GITHUB_WORKSPACE -- --format json --out $result_file $*
-
-echo "::set-output name=result_file::$result_file"
+case $1 in
+  Style)
+    ah m rubocop -- --format github $GIT_DIFF -- --only-guide-cops --only-recognized-file-types
+  ;;
+  Lint)
+    ah m rubocop -- --format github $GIT_DIFF -- -l --only-recognized-file-types
+  ;;
+  *)
+    ah m rubocop -- --format github $GIT_DIFF --only-recognized-file-types
+  ;;
+esac
