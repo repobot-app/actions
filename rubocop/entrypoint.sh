@@ -15,7 +15,5 @@ echo "::endgroup::"
 if [[ -z "$changed_files" ]]; then
   echo "No changes found, skipping checks"
 else
-  echo "::group::Results"
   ah m rubocop -- --format github $changed_files
-  echo "::endgroup::"
 fi
