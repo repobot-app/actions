@@ -1,27 +1,18 @@
 #!/bin/sh -l
 
-if [[ $GITHUB_EVENT_NAME == "pull_request" ]]; then
-  changed_files=$(ah ws cf --range "origin/$GITHUB_BASE_REF...origin/$GITHUB_HEAD_REF" --types ruby)
-else
-  changed_files=$(ah ws cf --range "$GITHUB_SHA" --types ruby)
-fi
-
 echo "::group::Changed/Added files"
-echo "$changed_files"
+echo "$MATCHED_FILES"
+echo "$GIT_DIFF"
 echo "::endgroup::"
 
-if [[ -z "$changed_files" ]]; then
-  echo "No changes found, skipping checks"
-else
-  case $1 in
-    Style)
-      ah m rubocop -- --format github $changed_files -- --only-guide-cops
-    ;;
-    Lint)
-      ah m rubocop -- --format github $changed_files -- -l
-    ;;
-    *)
-      ah m rubocop -- --format github $changed_files
-    ;;
-  esac
-fi
+case $1 in
+  Style)
+    ah m rubocop -- --format github $MATCHED_FILES -- --only-guide-cops
+  ;;
+  Lint)
+    ah m rubocop -- --format github $MATCHED_FILES -- -l
+  ;;
+  *)
+    ah m rubocop -- --format github $MATCHED_FILES
+  ;;
+esac

@@ -11,7 +11,8 @@ jobs:
     steps:
     - name: Clone
       uses: actions/checkout@v2
-      with:
-        fetch-depth: 0
+    - name: Get git diff
+      uses: technote-space/get-diff-action@v4
     - name: Run
+      if: env.GIT_DIFF && env.MATCHED_FILES
       uses: action-hero/actions/rubocop@test-rubocop
