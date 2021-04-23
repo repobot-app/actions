@@ -1,13 +1,22 @@
 #!/bin/sh -l
 
-git fetch origin $GITHUB_BASE_REF
-git fetch origin $GITHUB_HEAD_REF
+if [[ $GITHUB_EVENT_NAME == "pull_request" ]];then
+  git fetch origin $GITHUB_BASE_REF
+  git fetch origin $GITHUB_HEAD_REF
 
-changed_files=$(ah ws cf --dir . --head-ref origin/$GITHUB_HEAD_REF --base-ref origin/$GITHUB_BASE_REF --types ruby)
-
-if [[ -ne $changed_files ]]; then
-  echo "skipping"
+  changed_files=$(ah ws cf --range "origin/$GITHUB_BASE_REF...origin/$GITHUB_HEAD_REF" --types ruby)
 else
-  echo "running against $changed_files"
+  changed_files=$(ah ws cf --range "$GITHUB_SHA~1" --types ruby)
+fi
+
+if [[ ! -z "$changed_files" ]]; then
+  echo "No changes found, skipping checks"
+else
+  echo "::group::{Changed/Added files}"
+  echo "Running against $changed_files"
+  echo "::endgroup::"
+
+  echo "::group::{Results}"
   ah m rubocop --root $GITHUB_WORKSPACE -- --format github $changed_files
+  echo "::endgroup::"
 fi
