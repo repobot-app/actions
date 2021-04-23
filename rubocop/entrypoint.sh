@@ -14,6 +14,4 @@ else
   ah m rubocop --root $GITHUB_WORKSPACE -- --format json --out $result_file $changed_files
 fi
 
-echo $(cat /var/log/ah-cli.log)
-
 echo "::set-output name=result_file::$result_file"
