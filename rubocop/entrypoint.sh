@@ -15,15 +15,13 @@ if [[ -z "$changed_files" ]]; then
 else
   case $1 in
     "style")
-      cop_opt="--only-guide-cops"
+      ah m rubocop -- --format github $changed_files -- --only-guide-cops
     ;;
     "lint")
-      cop_opt="-l"
+      ah m rubocop -- --format github $changed_files -- -l
     ;;
     *)
-      ""
+      ah m rubocop -- --format github $changed_files
     ;;
   esac
-
-  ah m rubocop -- --format github $changed_files -- "$cop_opt"
 fi
