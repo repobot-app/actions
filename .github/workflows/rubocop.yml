@@ -14,5 +14,5 @@ jobs:
     - name: Get git diff
       uses: technote-space/get-diff-action@v4
     - name: Run
-      if: env.GIT_DIFF && env.MATCHED_FILES
+      if: env.GIT_DIFF
       uses: action-hero/actions/rubocop@test-rubocop
