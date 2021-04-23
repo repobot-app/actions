@@ -5,6 +5,7 @@ class TestingClass
 
   def hello(arg)
     puts 'oh noez me no use arg'
+    puts 'aaaaaaaaaaa'
   end
 end
 
