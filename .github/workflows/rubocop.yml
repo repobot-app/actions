@@ -1,4 +1,4 @@
-name: "Action Hero"
+name: "Action Hero: RuboCop"
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  RuboCop:
+  run:
     runs-on: ubuntu-latest
     steps:
     - name: Clone
