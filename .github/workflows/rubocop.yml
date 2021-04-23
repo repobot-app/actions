@@ -15,4 +15,4 @@ jobs:
       uses: technote-space/get-diff-action@v4
     - name: Run
       if: env.GIT_DIFF
-      uses: action-hero/actions/rubocop@test-rubocop
+      uses: action-hero/actions/rubocop@main
