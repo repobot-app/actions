@@ -30,5 +30,5 @@ else
     ;;
   esac
 
-  ah m rubocop -- --format github $changed_files -- $cop_opt
+  ah m rubocop -- --format github $changed_files -- "$cop_opt"
 fi
