@@ -1,14 +1,9 @@
 #!/bin/sh -l
 
 if [[ $GITHUB_EVENT_NAME == "pull_request" ]]; then
-  git fetch origin $GITHUB_BASE_REF
-  git fetch origin $GITHUB_HEAD_REF
-
   changed_files=$(ah ws cf --range "origin/$GITHUB_BASE_REF...origin/$GITHUB_HEAD_REF" --types ruby)
 else
-  git checkout HEAD^
-
-  changed_files=$(ah ws cf --range "HEAD~1" --types ruby)
+  changed_files=$(ah ws cf --range "$GITHUB_SHA" --types ruby)
 fi
 
 echo "::group::Changed/Added files"
