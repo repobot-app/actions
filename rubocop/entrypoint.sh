@@ -9,9 +9,7 @@ else
 fi
 
 echo "::group::Changed/Added files"
-echo "FILES<<STR"
 echo "$changed_files"
-echo "STR"
 echo "::endgroup::"
 
 if [[ -z "$changed_files" ]]; then
