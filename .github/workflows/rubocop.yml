@@ -8,10 +8,6 @@ on:
 jobs:
   Run:
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        type: ["Style", "Lint"]
     steps:
     - name: Clone
       uses: actions/checkout@v2
@@ -19,5 +15,3 @@ jobs:
         fetch-depth: 0
     - name: Run
       uses: action-hero/actions/rubocop@test-rubocop
-      with:
-        type: ${{ matrix.type }}
