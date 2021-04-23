@@ -6,9 +6,9 @@ if [[ $GITHUB_EVENT_NAME == "pull_request" ]]; then
 
   changed_files=$(ah ws cf --range "origin/$GITHUB_BASE_REF...origin/$GITHUB_HEAD_REF" --types ruby)
 else
-  git pull --depth=2
+  git checkout HEAD^
 
-  changed_files=$(ah ws cf --range "$GITHUB_SHA~1" --types ruby)
+  changed_files=$(ah ws cf --range "HEAD~1" --types ruby)
 fi
 
 echo "::group::Changed/Added files"

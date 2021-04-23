@@ -9,8 +9,16 @@ jobs:
   run:
     runs-on: ubuntu-latest
     steps:
-    - name: Clone
+    - name: Clone PR
       uses: actions/checkout@v2
+      if: ${{ github.event_name == 'pull_request' }}
+      with:
+        ref: ${{ github.event.pull_request.head.sha }}
+    - name: Clone Push
+      if: ${{ github.event_name != 'pull_request' }}
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 2
     - name: Check changed and/or new files
       id: rubocop
       uses: action-hero/actions/rubocop@test-rubocop
