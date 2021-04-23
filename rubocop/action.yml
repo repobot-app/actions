@@ -2,15 +2,12 @@
 name: 'RuboCop'
 description: 'Runs RuboCop'
 inputs:
-  path:
-    description: 'Path to file(s)'
+  type:
+    description: 'The type of cops that should be used'
     required: false
-    default: '**/*.rb'
-outputs:
-  result_file:
-    description: 'Result file'
+    default: 'all'
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.path }}
+    - ${{ inputs.type }}

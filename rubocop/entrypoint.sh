@@ -18,5 +18,17 @@ echo "::endgroup::"
 if [[ -z "$changed_files" ]]; then
   echo "No changes found, skipping checks"
 else
-  ah m rubocop -- --format github $changed_files
+  case $1 in
+    "style")
+      cop_opt="--only-guide-cops"
+    ;;
+    "lint")
+      cop_opt="-l"
+    ;;
+    *)
+      ""
+    ;;
+  esac
+
+  ah m rubocop -- --format github $changed_files -- $cop_opt
 fi
