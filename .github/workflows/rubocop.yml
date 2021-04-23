@@ -16,8 +16,3 @@ jobs:
       uses: action-hero/actions/rubocop@test-rubocop
       with:
         path: 'tests/rubocop/hello.rb'
-    - name: Store results
-      uses: actions/upload-artifact@v2
-      with:
-        name: ${{ steps.rubocop.outputs.result_file }}
-        path: ${{ steps.rubocop.outputs.result_file }}
