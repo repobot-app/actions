@@ -9,8 +9,8 @@ jobs:
   Run:
     runs-on: ubuntu-latest
     strategy:
-    matrix:
-      type: ["style", "lint"]
+      matrix:
+        type: ["style", "lint"]
     steps:
     - name: Clone
       uses: actions/checkout@v2
