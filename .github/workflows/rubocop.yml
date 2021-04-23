@@ -1,4 +1,4 @@
-name: "Devtools"
+name: "Action Hero"
 
 on:
   push:
@@ -11,8 +11,7 @@ jobs:
     steps:
     - name: Clone
       uses: actions/checkout@v2
-    - name: Run rubocop
+    - name: Check changed and/or new files
+      if: ${{ github.event_name == 'pull_request' }}
       id: rubocop
       uses: action-hero/actions/rubocop@test-rubocop
-      with:
-        path: 'tests/rubocop/hello.rb'
