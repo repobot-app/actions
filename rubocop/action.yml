@@ -11,3 +11,4 @@ runs:
   image: 'Dockerfile'
   args:
     - ${{ inputs.type }}
+    - ${{ inputs.diff }}
