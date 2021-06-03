@@ -12,6 +12,12 @@ jobs:
       uses: actions/checkout@v2
     - name: Get git diff
       uses: technote-space/get-diff-action@v4
+      with:
+        PATTERNS: |
+          **/*.rb
+          **/*.rake
+          Gemfile
+          Rakefile
     - name: Store
       run: echo $GIT_DIFF > diff.txt
     - name: Upload
