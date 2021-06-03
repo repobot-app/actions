@@ -8,6 +8,7 @@ class TestingClass
   def hello(arg)
     puts 'oh noez me no use arg'
     puts 'aaaaaaaaaaa'
+    1 + 2
     puts "hola"
   end
 end
