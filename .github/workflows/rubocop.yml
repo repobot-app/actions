@@ -4,40 +4,55 @@ on:
   pull_request:
   workflow_dispatch:
 jobs:
-  RuboCop:
+  diff:
     runs-on: ubuntu-latest
     steps:
     - name: Clone
       uses: actions/checkout@v2
     - name: Get git diff
       uses: technote-space/get-diff-action@v4
+    - name: Store
+      run: echo $GIT_DIFF > diff.txt
+    - name: Upload
+      uses: actions/upload-artifact@v2
+      with:
+        name: dist
+        path: diff.txt
+  style:
+    runs-on: ubuntu-latest
+    needs: diff
+    name: "RuboCop / Style"
+    steps:
+    - name: Download the diff artifact
+      uses: actions/download-artifact@v2
+      with:
+        name: diff
+        path: /tmp/diff.txt
+    - name: Set diff
+      id: diff
+      run: echo "::set-output name=files::$(cat /tmp/diff.txt)"
     - name: Style
-      if: env.GIT_DIFF
+      uses: action-hero/actions/rubocop@main
+      env:
+        GIT_DIFF: ${{ steps.diff.outputs.files }}
       with:
         type: Style
-      uses: action-hero/actions/rubocop@main
+  naming:
+    runs-on: ubuntu-latest
+    needs: diff
+    name: "RuboCop / Naming"
+    steps:
+    - name: Download the diff artifact
+      uses: actions/download-artifact@v2
+      with:
+        name: diff
+        path: /tmp/diff.txt
+    - name: Set diff
+      id: diff
+      run: echo "::set-output name=files::$(cat /tmp/diff.txt)"
     - name: Naming
-      if: env.GIT_DIFF
+      uses: action-hero/actions/rubocop@main
+      env:
+        GIT_DIFF: ${{ steps.diff.outputs.files }}
       with:
         type: Naming
-      uses: action-hero/actions/rubocop@main
-    - name: Lint
-      if: env.GIT_DIFF
-      with:
-        type: Lint
-      uses: action-hero/actions/rubocop@main
-    - name: Layout
-      if: env.GIT_DIFF
-      with:
-        type: Layout
-      uses: action-hero/actions/rubocop@main
-    - name: Metrics
-      if: env.GIT_DIFF
-      with:
-        type: Metrics
-      uses: action-hero/actions/rubocop@main
-    - name: Security
-      if: env.GIT_DIFF
-      with:
-        type: Security
-      uses: action-hero/actions/rubocop@main
