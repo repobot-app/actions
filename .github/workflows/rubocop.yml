@@ -1,16 +1,37 @@
-name: "Action Hero / RuboCop"
+name: "Code analysis"
 on:
   push:
   pull_request:
   workflow_dispatch:
 jobs:
-  Run:
+  RuboCop:
     runs-on: ubuntu-latest
     steps:
     - name: Clone
       uses: actions/checkout@v2
     - name: Get git diff
       uses: technote-space/get-diff-action@v4
-    - name: Run against changed files
+    - name: Style
       if: env.GIT_DIFF
+      type: Style
+      uses: action-hero/actions/rubocop@main
+    - name: Naming
+      if: env.GIT_DIFF
+      type: Naming
+      uses: action-hero/actions/rubocop@main
+    - name: Lint
+      if: env.GIT_DIFF
+      type: Lint
+      uses: action-hero/actions/rubocop@main
+    - name: Layout
+      if: env.GIT_DIFF
+      type: Layout
+      uses: action-hero/actions/rubocop@main
+    - name: Metrics
+      if: env.GIT_DIFF
+      type: Metrics
+      uses: action-hero/actions/rubocop@main
+    - name: Security
+      if: env.GIT_DIFF
+      type: Security
       uses: action-hero/actions/rubocop@main
