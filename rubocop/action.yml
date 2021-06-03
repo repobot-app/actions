@@ -4,8 +4,10 @@ description: 'Runs RuboCop'
 inputs:
   type:
     description: 'The type of cops that should be used'
-    required: false
-    default: 'all'
+    required: true
+  diff:
+    description: 'A list of files that changed'
+    required: true
 runs:
   using: 'docker'
   image: 'Dockerfile'
