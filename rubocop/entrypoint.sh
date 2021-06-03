@@ -24,6 +24,6 @@ case $1 in
     ah m rubocop -- --format github $GIT_DIFF -- --only Security --only-recognized-file-types
   ;;
   *)
-    ah m rubocop -- --format github $GIT_DIFF --only-recognized-file-types
+    ah m rubocop -- --format github $GIT_DIFF -- --only-recognized-file-types
   ;;
 esac
