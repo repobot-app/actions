@@ -28,7 +28,7 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         name: diff
-        path: /tmp/diff.txt
+        path: /tmp
     - name: Set diff
       id: diff
       run: echo "::set-output name=files::$(cat /tmp/diff.txt)"
