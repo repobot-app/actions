@@ -30,8 +30,6 @@ jobs:
     needs: diff
     name: "Style"
     steps:
-    - name: Clone
-      uses: actions/checkout@v2
     - name: Download the diff artifact
       uses: actions/download-artifact@v2
       with:
@@ -40,7 +38,10 @@ jobs:
     - name: Set diff
       id: diff
       run: echo "::set-output name=files::$(cat /tmp/diff.txt)"
+    - name: Clone
+      uses: actions/checkout@v2
     - name: Style
+      if: steps.diff.outputs.files != ''
       uses: action-hero/actions/rubocop@main
       env:
         GIT_DIFF: ${{ steps.diff.outputs.files }}
@@ -51,18 +52,19 @@ jobs:
     needs: diff
     name: "Naming"
     steps:
-    - name: Clone
-      uses: actions/checkout@v2
     - name: Download the diff artifact
       uses: actions/download-artifact@v2
       with:
         name: diff
-        path: /tmp/diff.txt
+        path: /tmp
     - name: Set diff
       id: diff
       run: echo "::set-output name=files::$(cat /tmp/diff.txt)"
+    - name: Clone
+      uses: actions/checkout@v2
     - name: Naming
       uses: action-hero/actions/rubocop@main
+      if: steps.diff.outputs.files != ''
       env:
         GIT_DIFF: ${{ steps.diff.outputs.files }}
       with:
