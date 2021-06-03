@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Check diff
     outputs:
-      files: ${{ steps.get_diff.outputs.diff }}
+      files: ${{ env.GIT_DIFF }}
     steps:
     - name: Clone
       uses: actions/checkout@v2
