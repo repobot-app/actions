@@ -8,11 +8,12 @@ jobs:
     runs-on: ubuntu-latest
     name: Check diff
     outputs:
-      files: ${{ steps.set_files.outputs.files }}
+      files: ${{ steps.get_diff.outputs.diff }}
     steps:
     - name: Clone
       uses: actions/checkout@v2
     - name: Get git diff
+      id: get_diff
       uses: technote-space/get-diff-action@v4
       with:
         PATTERNS: |
@@ -20,9 +21,6 @@ jobs:
           **/*.rake
           Gemfile
           Rakefile
-    - name: Set files
-      id: set_files
-      run: echo "::set-output name=files::$GIT_DIFF"
 
   run:
     runs-on: ubuntu-latest
