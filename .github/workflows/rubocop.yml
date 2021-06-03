@@ -6,7 +6,7 @@ on:
 jobs:
   run:
     runs-on: ubuntu-latest
-    name: RuboCop / ${{ matrix.type }}
+    name: ${{ matrix.type }}
     strategy:
       fail-fast: false
       matrix:
