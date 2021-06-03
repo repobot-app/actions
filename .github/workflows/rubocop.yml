@@ -6,7 +6,7 @@ on:
 jobs:
   diff:
     runs-on: ubuntu-latest
-    name: Set up diff
+    name: Check diff
     steps:
     - name: Clone
       uses: actions/checkout@v2
@@ -45,7 +45,7 @@ jobs:
     - name: Clone
       uses: actions/checkout@v2
       if: steps.diff.outputs.files != ''
-    - name: ${{ matrix.type }}
+    - name: Check ${{ matrix.type }}
       if: steps.diff.outputs.files != ''
       uses: action-hero/actions/rubocop@main
       env:
