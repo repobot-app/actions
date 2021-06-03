@@ -39,6 +39,6 @@ jobs:
     - name: Check ${{ matrix.type }}
       uses: action-hero/actions/rubocop@main
       env:
-        GIT_DIFF: ${{ jobs.diff.outputs.files }}
+        GIT_DIFF: ${{ needs.jobs.diff.outputs.files }}
       with:
         type: ${{ matrix.type }}
