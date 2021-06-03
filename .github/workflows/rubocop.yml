@@ -40,6 +40,7 @@ jobs:
       run: echo "::set-output name=files::$(cat /tmp/diff.txt)"
     - name: Clone
       uses: actions/checkout@v2
+      if: steps.diff.outputs.files != ''
     - name: Style
       if: steps.diff.outputs.files != ''
       uses: action-hero/actions/rubocop@main
@@ -62,6 +63,7 @@ jobs:
       run: echo "::set-output name=files::$(cat /tmp/diff.txt)"
     - name: Clone
       uses: actions/checkout@v2
+      if: steps.diff.outputs.files != ''
     - name: Naming
       uses: action-hero/actions/rubocop@main
       if: steps.diff.outputs.files != ''
