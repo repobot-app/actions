@@ -9,6 +9,8 @@ class TestingClass
     puts 'oh noez me no use arg'
     puts 'aaaaaaaaaaa'
     1 + 2
+    arr=[]
+    arr<<1
     puts "hola"
   end
 end
