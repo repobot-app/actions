@@ -12,4 +12,6 @@ class TestingClass
   end
 end
 
+puts "but before I go"
+
 puts 'good bye'
