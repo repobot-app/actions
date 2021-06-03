@@ -7,6 +7,7 @@ class TestingClass
 
   def hello(arg)
     puts 'oh noez me no use arg'
+    h={}
     puts 'aaaaaaaaaaa'
     1 + 2
     arr=[]
