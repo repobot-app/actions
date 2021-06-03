@@ -24,6 +24,8 @@ jobs:
     needs: diff
     name: "RuboCop / Style"
     steps:
+    - name: Clone
+      uses: actions/checkout@v2
     - name: Download the diff artifact
       uses: actions/download-artifact@v2
       with:
@@ -43,6 +45,8 @@ jobs:
     needs: diff
     name: "RuboCop / Naming"
     steps:
+    - name: Clone
+      uses: actions/checkout@v2
     - name: Download the diff artifact
       uses: actions/download-artifact@v2
       with:
