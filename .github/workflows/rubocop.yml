@@ -27,7 +27,7 @@ jobs:
   run:
     runs-on: ubuntu-latest
     needs: diff
-    if: jobs.diff.outputs.files != ''
+    if: needs.jobs.diff.outputs.files != ''
     name: ${{ matrix.type }}
     strategy:
       fail-fast: false
