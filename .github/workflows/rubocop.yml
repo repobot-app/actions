@@ -25,10 +25,14 @@ jobs:
       with:
         name: diff
         path: diff.txt
-  style:
+  run:
     runs-on: ubuntu-latest
     needs: diff
-    name: "Style"
+    name: ${{ matrix.type }}
+    strategy:
+      fail-fast: false
+      matrix:
+        type: ["Style", "Layout", "Naming", "Lint", "Metrics", "Security"]
     steps:
     - name: Download the diff artifact
       uses: actions/download-artifact@v2
@@ -41,33 +45,10 @@ jobs:
     - name: Clone
       uses: actions/checkout@v2
       if: steps.diff.outputs.files != ''
-    - name: Style
+    - name: ${{ matrix.type }}
       if: steps.diff.outputs.files != ''
       uses: action-hero/actions/rubocop@main
       env:
         GIT_DIFF: ${{ steps.diff.outputs.files }}
       with:
-        type: Style
-  naming:
-    runs-on: ubuntu-latest
-    needs: diff
-    name: "Naming"
-    steps:
-    - name: Download the diff artifact
-      uses: actions/download-artifact@v2
-      with:
-        name: diff
-        path: /tmp
-    - name: Set diff
-      id: diff
-      run: echo "::set-output name=files::$(cat /tmp/diff.txt)"
-    - name: Clone
-      uses: actions/checkout@v2
-      if: steps.diff.outputs.files != ''
-    - name: Naming
-      uses: action-hero/actions/rubocop@main
-      if: steps.diff.outputs.files != ''
-      env:
-        GIT_DIFF: ${{ steps.diff.outputs.files }}
-      with:
-        type: Naming
+        type: ${{ matrix.type }}
