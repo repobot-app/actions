@@ -1,4 +1,4 @@
-name: "Code analysis"
+name: "RuboCop"
 on:
   push:
   pull_request:
@@ -28,7 +28,7 @@ jobs:
   style:
     runs-on: ubuntu-latest
     needs: diff
-    name: "RuboCop / Style"
+    name: "Style"
     steps:
     - name: Clone
       uses: actions/checkout@v2
@@ -49,7 +49,7 @@ jobs:
   naming:
     runs-on: ubuntu-latest
     needs: diff
-    name: "RuboCop / Naming"
+    name: "Naming"
     steps:
     - name: Clone
       uses: actions/checkout@v2
