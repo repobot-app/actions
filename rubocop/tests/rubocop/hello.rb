@@ -11,6 +11,7 @@ class TestingClass
     1 + 2
     arr=[]
     arr<<1
+    arr-[1]
     puts "hola"
   end
 end
