@@ -1,4 +1,4 @@
-FROM solnic/ah-runner-rubocop:latest
+FROM solnic/rba-runner-rubocop:latest
 
 COPY entrypoint.sh /
 

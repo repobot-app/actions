@@ -2,7 +2,7 @@ version: "3"
 
 services:
   rubocop:
-    image: solnic/ah-action-rubocop:latest
+    image: solnic/rba-action-rubocop:latest
     volumes:
       - .:/github/workspace
     build:
