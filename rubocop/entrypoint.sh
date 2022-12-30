@@ -5,7 +5,7 @@ echo "$2"
 echo "::endgroup::"
 
 if [[ $1 != "" ]]; then
-  rba m rubocop -- --format github --only $1 --only-recognized-file-types $2
+  rebopot m rubocop -- --format github --only $1 --only-recognized-file-types $2
 else
-  rba m rubocop -- --format github --only-recognized-file-types $2
+  repobot m rubocop -- --format github --only-recognized-file-types $2
 fi
